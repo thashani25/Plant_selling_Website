@@ -27,6 +27,55 @@
     
 
 
+
+     <?php
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+// Get the product ID from the URL
+if (isset($_GET['id'])) {
+    $product_id = intval($_GET['id']); // Sanitize input
+
+    // SQL to get product details
+    $sql = "SELECT * FROM view_products WHERE id = $id";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        $product = $result->fetch_assoc();
+        ?>
+
+        <!-- HTML to show product -->
+        <h2><?= htmlspecialchars($product['name']); ?></h2>
+        <img src="images/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" >
+        <p><strong>Description:</strong> <?= nl2br(htmlspecialchars($product['description'])); ?></p>
+        <p><strong>Price:</strong> $<?= htmlspecialchars($product['price']); ?></p>
+
+        <?php
+    } else {
+        echo "<p>Product not found.</p>";
+    }
+} else {
+    echo "<p>No product ID specified.</p>";
+}
+
+$conn->close();
+?>
+
+<div class="box-container">
+                <div class="box">
+                    <img src="img\4.jpg">
+                    <h6><B><l>Scarlet Ball</B> (Parodia haselbergii)
+                    This small rounded cactus has a profusion of delicate spines, giving it an almost fuzzy appearance. 
+                    The gorgeous orange-red flowers are a beautiful contrast to the white spines. 
+                    It needs bright sunlight and infrequent watering.</h6>
+</div>
+ </div>
+
+
  
 
               <?php include 'footer.php'; ?> 

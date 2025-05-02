@@ -42,10 +42,10 @@ while($row = $result->fetch_assoc()) {
 
 <div class="gallery">
   <div class="product-box">
-    <img src="img/about1.png" alt="">
+    <img src="img/7a.jpg" alt="">
     <div class="product-info">
       <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">$29.99</p>
+      <p class="product-price">R.s. 900.00</p>
       <button class="buy-btn">Buy Now</button>
     </div>
     <div class="icon-dropdown">
@@ -65,10 +65,10 @@ while($row = $result->fetch_assoc()) {
 
   <div class="gallery">
   <div class="product-box">
-    <img src="img/about1.png" alt="">
+    <img src="img/9a.jpg" alt="">
     <div class="product-info">
       <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">$29.99</p>
+      <p class="product-price">R.S.600.00</p>
       <button class="buy-btn">Buy Now</button>
     </div>
     <div class="icon-dropdown">
@@ -86,32 +86,10 @@ while($row = $result->fetch_assoc()) {
 
   <div class="gallery">
   <div class="product-box">
-    <img src="img/about1.png" alt="">
+    <img src="img/5a.jpg" alt="">
     <div class="product-info">
       <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">$29.99</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
-  </div>
-
-
-  <div class="gallery">
-  <div class="product-box">
-    <img src="img/about1.png" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">$29.99</p>
+      <p class="product-price">R.S.900.00</p>
       <button class="buy-btn">Buy Now</button>
     </div>
     <div class="icon-dropdown">
@@ -130,10 +108,32 @@ while($row = $result->fetch_assoc()) {
 
   <div class="gallery">
   <div class="product-box">
-    <img src="img/about1.png" alt="">
+    <img src="img/12a.jpg" alt="">
     <div class="product-info">
       <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">$29.99</p>
+      <p class="product-price">R.S.500.00</p>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="icon-dropdown">
+      <button class="icon-button">👤</button>
+      <div class="icon-menu">
+        <a href="#"><span>🛒</span>Cart</a>
+        <a href="#"><span>❤️</span>Wishlist</a>
+        <a href="view_page.php"><span>🔐</span>Profile</a>
+      </div>
+    </div>
+    <div class="flex">
+      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
+    </div>
+  </div>
+
+
+  <div class="gallery">
+  <div class="product-box">
+    <img src="img/13a.jpg" alt="">
+    <div class="product-info">
+      <h2 class="product-title">Power Puff</h2>
+      <p class="product-price">R.S.300.00</p>
       <button class="buy-btn">Buy Now</button>
     </div>
     <div class="icon-dropdown">
@@ -153,10 +153,10 @@ while($row = $result->fetch_assoc()) {
 
   <div class="gallery">
   <div class="product-box">
-    <img src="img/about1.png" alt="">
+    <img src="img/14a.jpg" alt="">
     <div class="product-info">
       <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">$29.99</p>
+      <p class="product-price">R.S.650.00</p>
       <button class="buy-btn">Buy Now</button>
     </div>
     <div class="icon-dropdown">
