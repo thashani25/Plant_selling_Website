@@ -22,6 +22,7 @@ html{
 body{
     background-image: url('img/body-bg.jpg');
     width: 100%;
+    font-family: Italianno;
 }
 
 .main{
@@ -729,8 +730,12 @@ header.scrolled{
     text-align: center;
 }
 .slider-slider .slide-detail h1{
-    font-size: 40px;
-    color: #061813;
+    font-family: 'Special Elite', cursive;
+    font-style: italic;
+    font-size: 44px;
+    color: #1b5e20;
+    text-align: center;
+    margin-top: 40px;
     text-transform: uppercase;
     position: relative;
     opacity: 10;
