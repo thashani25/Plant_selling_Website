@@ -83,4 +83,6 @@ function prevSlide(){
     slides[index].classList.add('active');
 }
 
+///    tag \\
+
 

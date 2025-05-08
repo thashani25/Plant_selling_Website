@@ -649,54 +649,39 @@ header.scrolled{
       }
       
   
-      /* Icon dropdown styles */
       .icon-dropdown {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
+        position: relative;
+        display: inline-block;
       }
-  
+      
       .icon-button {
         background: none;
         border: none;
         font-size: 24px;
         cursor: pointer;
-        color: #000;
       }
-  
+      
       .icon-menu {
         display: none;
         position: absolute;
-        background-color: #8ae7a6;
-        border: 1px solid #08f362;
+        right: 0;
+        background-color: white;
+        min-width: 200px;
+        max-height: 300px;
+        overflow-y: auto;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        min-width: 140px;
-        z-index: 1000;
+        padding: 10px;
       }
-  
-      .icon-menu a {
+      
+      .product-mini {
         display: flex;
         align-items: center;
-        padding: 10px 15px;
-        text-decoration: none;
-        color: #0a0a0a;
-        transition: background 0.2s;
+        margin-bottom: 10px;
       }
-  
-      .icon-menu a:hover {
-        background-color: #c5e6d2;
-      }
-  
-      .icon-menu a span {
-        margin-right: 10px;
-        font-size: 18px;
-      }
-  
-      .icon-dropdown:hover .icon-menu {
-        display: block;
-      }
-
+      
+      
 
 /*---home slider---*/
 .home-section{

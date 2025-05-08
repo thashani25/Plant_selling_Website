@@ -5,13 +5,7 @@
 
 //--adding products in wishist-->
 
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
-while($row = $result->fetch_assoc()) {
-    echo "<h2>" . $row['name'] . "</h2>";
-    echo "<p>$" . $row['price'] . "</p>";
-    echo "<img src='" . $row['image'] . "'>";
-}
+
 
 
 ?>
@@ -41,138 +35,41 @@ while($row = $result->fetch_assoc()) {
 <!--- gallary--->
 
 <div class="gallery">
-  <div class="product-box">
-    <img src="img/7a.jpg" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">R.s. 900.00</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
+  <?php
+  $sql = "SELECT * FROM products";
+  $result = $conn->query($sql);
+  while($row = $result->fetch_assoc()) {
+      echo '<div class="product-box">';
+      echo "<h2>" . htmlspecialchars($row['name']) . "</h2>";
+      echo "<p>R.S. " . htmlspecialchars($row['price']) . "</p>";
+      echo "<img src='" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
+      
+      // Buy Now Button with a form
+      echo '<form action="add_to_cart.php" method="POST">';
+      echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+      echo '<input type="number" name="qty" value="1" min="1" max="99" class="qty" required>';
+      echo '<button type="submit" name="add_to_cart" class="buy-btn">Buy Now</button>';
+      echo '</form>';
+      
+      echo '</div>';
+  }
+  ?>
+</div>
+
+
+<div class="icon-dropdown">
+  <button class="icon-button">👤</button>
+  <div class="icon-menu">
+    <a href="#"><span>🛒</span>Cart</a>
+    <a href="#"><span>❤️</span>Wishlist</a>
+    <a href="view_page.php"><span>🔐</span>Profile</a>
   </div>
+</div>
 
 
 
-  <div class="gallery">
-  <div class="product-box">
-    <img src="img/9a.jpg" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">R.S.600.00</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
-  </div>
-
-  <div class="gallery">
-  <div class="product-box">
-    <img src="img/5a.jpg" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">R.S.900.00</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
-  </div>
-
-
-  <div class="gallery">
-  <div class="product-box">
-    <img src="img/12a.jpg" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">R.S.500.00</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
-  </div>
-
-
-  <div class="gallery">
-  <div class="product-box">
-    <img src="img/13a.jpg" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">R.S.300.00</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
-  </div>
-
-
-
-  <div class="gallery">
-  <div class="product-box">
-    <img src="img/14a.jpg" alt="">
-    <div class="product-info">
-      <h2 class="product-title">Power Puff</h2>
-      <p class="product-price">R.S.650.00</p>
-      <button class="buy-btn">Buy Now</button>
-    </div>
-    <div class="icon-dropdown">
-      <button class="icon-button">👤</button>
-      <div class="icon-menu">
-        <a href="#"><span>🛒</span>Cart</a>
-        <a href="#"><span>❤️</span>Wishlist</a>
-        <a href="view_page.php"><span>🔐</span>Profile</a>
-      </div>
-    </div>
-    <div class="flex">
-      <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-    </div>
-  </div>
-
-
+ 
+     
 
 </div>
 </div>
