@@ -278,33 +278,34 @@ header.scrolled{
     color: #555;
     text-transform: capitalize;
 }
-.product .box-container .box .button{
+.box .button{
     text-align: center;
     position: absolute;
     bottom: 30%;
-    right: 7%;
+    right: 4%;
     border-radius: 20px;
-    background: var(--light-green);
-    padding: .5rem 1.5rem;
+    background: rgb(89, 175, 89);
+    padding: .4rem 1.5rem;
 }
-.product .box-container .box .button i,
-.product .box-container .box .button a{
+.box .button i,
+.box .button a{
     font-size: 1.3rem;
     font-weight: bold;
-    margin-right: .5rem;
+    margin-right: .1rem;
     color: #000;
 }
+
 .product .box-container .box .flex{
     padding-bottom: 1rem;
     display: flex;
     margin-right: auto;
 }
-.product .box-container .box .price{
+.box .price{
     font-size: 1.1rem;
     color: var(--green);
     margin-right: auto;
 }
-.product .box-container .box .btn{
+.box .btn{
     position: absolute;
     top: 5%;
 }

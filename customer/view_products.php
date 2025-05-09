@@ -29,52 +29,60 @@
 
 
      <?php
+include 'conection.php';
+session_start();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Redirect if user not logged in
+if (!isset($_SESSION['user_id'])) {
+
+    exit();
 }
 
+// Check if form data is submitted
+if (isset($_POST['product_id']) && isset($_POST['qty'])) {
+    $user_id = (int)$_SESSION['user_id'];
+    $product_id = (int)$_POST['product_id'];
+    $quantity = (int)$_POST['qty'];
 
-// Get the product ID from the URL
-if (isset($_GET['id'])) {
-    $product_id = intval($_GET['id']); // Sanitize input
+    // Get product price from DB
+    $product_stmt = $conn->prepare("SELECT price FROM products WHERE id = ?");
+    $product_stmt->bind_param("i", $product_id);
+    $product_stmt->execute();
+    $product_result = $product_stmt->get_result();
 
-    // SQL to get product details
-    $sql = "SELECT * FROM view_products WHERE id = $id";
-    $result = $conn->query($sql);
+    if ($product_result->num_rows === 1) {
+        $product = $product_result->fetch_assoc();
+        $price = (float)$product['price'];
+        $total_price = $price * $quantity;
 
-    if ($result && $result->num_rows > 0) {
-        $product = $result->fetch_assoc();
-        ?>
+        // Check if product is already in the cart
+        $check_stmt = $conn->prepare("SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?");
+        $check_stmt->bind_param("ii", $user_id, $product_id);
+        $check_stmt->execute();
+        $check_result = $check_stmt->get_result();
 
-        <!-- HTML to show product -->
-        <h2><?= htmlspecialchars($product['name']); ?></h2>
-        <img src="images/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" >
-        <p><strong>Description:</strong> <?= nl2br(htmlspecialchars($product['description'])); ?></p>
-        <p><strong>Price:</strong> $<?= htmlspecialchars($product['price']); ?></p>
+        if ($check_result->num_rows > 0) {
+            // If exists, update quantity and total_price
+            $update_stmt = $conn->prepare("UPDATE cart SET quantity = quantity + ?, total_price = total_price + ? WHERE user_id = ? AND product_id = ?");
+            $update_stmt->bind_param("idii", $quantity, $total_price, $user_id, $product_id);
+            $update_stmt->execute();
+        } else {
+            // Else, insert new row
+            $insert_stmt = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES (?, ?, ?, ?)");
+            $insert_stmt->bind_param("iiid", $user_id, $product_id, $quantity, $total_price);
+            $insert_stmt->execute();
+        }
 
-        <?php
+        // Redirect to cart
+        header("Location: cart_page.php");
+        exit();
     } else {
-        echo "<p>Product not found.</p>";
+        echo "Product not found!";
     }
 } else {
-    echo "<p>No product ID specified.</p>";
+    echo "Invalid data submitted!";
 }
-
-$conn->close();
 ?>
-
-<div class="box-container">
-                <div class="box">
-                    <img src="img\4.jpg">
-                    <h6><B><l>Scarlet Ball</B> (Parodia haselbergii)
-                    This small rounded cactus has a profusion of delicate spines, giving it an almost fuzzy appearance. 
-                    The gorgeous orange-red flowers are a beautiful contrast to the white spines. 
-                    It needs bright sunlight and infrequent watering.</h6>
-</div>
- </div>
-
 
  
 
