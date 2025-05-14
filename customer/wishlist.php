@@ -21,7 +21,7 @@ if (isset($_POST['delete'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Wishlist - Green Cafee</title>
+    <title>My Wishlist - Green Cactus</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>

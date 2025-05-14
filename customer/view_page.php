@@ -34,7 +34,7 @@ if (isset($_POST['add_to_cart'])) {
         $insert->execute();
     }
 
-    header("Location: cart_page.php");
+    header("Location: cart.php");
     exit;
 }
 
@@ -53,7 +53,7 @@ if (isset($_POST['add_to_wishlist'])) {
         $insert->execute();
     }
 
-    header("Location: wishlist_page.php");
+    header("Location: wishlist.php");
     exit;
 }
 ?>
@@ -102,8 +102,8 @@ if (isset($_POST['add_to_wishlist'])) {
 
         if ($product):
         ?>
-        <form method="post">
-            <img src="images/<?= htmlspecialchars($product['image']) ?>" alt="Product Image" width="300">
+        <form action="" method="post">
+        <img src="image/<?= htmlspecialchars($product['image']) ?>"  width="400" height="400">
             <div class="details">
                 <div class="price">Rs. <?= number_format($product['price'], 2) ?></div>
                 <div class="name"><?= htmlspecialchars($product['name']) ?></div>
