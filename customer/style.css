@@ -50,9 +50,8 @@ a{
 .title p {
     text-transform: capitalize;
 }
-.title .logo{
-    width: 80px;
-}
+
+
 
 ul{
     list-style: none;
@@ -165,6 +164,7 @@ button{
 .title2 a{
     color: var(--green);
 }
+  
 
 
 /*-----header-----*/
@@ -307,7 +307,7 @@ header.scrolled{
 }
 .box .btn{
     position: absolute;
-    top: 5%;
+    top: 90%;
 }
 .product .box-container .box .flex .qty{
     border-radius: .5rem;

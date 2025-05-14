@@ -1,59 +1,104 @@
 <?php
-    include 'conection.php';
-    session_start();
+include 'conection.php';
+session_start();
 
-   
+$error_msg = '';
 
+if (isset($_POST['submit'])) {
+    $email = trim($_POST['email']);
+    $pass = trim($_POST['pass']);
+
+    // Validate inputs
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error_msg = "Invalid email format";
+    } else {
+        // Prepare and check user
+        $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows === 1) {
+            $stmt->bind_result($user_id, $hashed_password);
+            $stmt->fetch();
+
+            if (password_verify($pass, $hashed_password)) {
+                $_SESSION['user_id'] = $user_id;
+                header("Location: home.php");
+                exit;
+            } else {
+                $error_msg = "Incorrect password!";
+            }
+        } else {
+            $error_msg = "Email not registered!";
+        }
+        $stmt->close();
+    }
+}
 ?>
-<style type="text/css">
-    <?php include 'style.css'; ?>
-</style>
+
+<?php
+$conn = new mysqli("localhost", "root", "", "cactusdb");
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$email = "admin@example.com";
+$password = "123456"; // plain text
+$hashed_password = password_hash($password, PASSWORD_DEFAULT); // hashed
+
+$stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
+$stmt->bind_param("ss", $email, $hashed_password);
+
+//if ($stmt->execute()) {
+  //  echo "Test user inserted successfully.<br>";
+  //  echo "Email: <strong>$email</strong><br>";
+  //  echo "Password: <strong>$password</strong>";
+//} else {
+  //  echo "Error: " . $stmt->error;
+//}
+
+$stmt->close();
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>green tea - login now </title>
+    <title>Green Cafee - Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <section class="form-container">
-            <div class="title">
-                <img src="img/download.png">
-                <h1>login now</h1>
-                <p> </p>
+
+<div class="main-container">
+    <section class="form-container">
+        <div class="title">
+            <img src="img/logo.png" alt="Logo">
+            <h1>Login Now</h1>
+        </div>
+
+        <?php if ($error_msg): ?>
+            <p style="color:red;"><?php echo htmlspecialchars($error_msg); ?></p>
+        <?php endif; ?>
+
+        <form action="" method="post">
+            <div class="input-filed">
+                <p>Your Email <sub>*</sub></p>
+                <input type="email" name="email" required placeholder="Enter your email" maxlength="50"
+                    oninput="this.value = this.value.replace(/\s/g, '')">
             </div>
-
-            <form action="" method="post">
-                 <div class="input-filed">
-                    <p>your email <sub>*</sub></p>
-                    <input type="email" name="email" required placeholder="enter your email" maxlength="50" 
+            <div class="input-filed">
+                <p>Your Password <sub>*</sub></p>
+                <input type="password" name="pass" required placeholder="Enter your password" maxlength="50"
                     oninput="this.value = this.value.replace(/\s/g, '')">
-                 </div>
-                 <div class="input-filed">
-                    <p>your password <sub>*</sub></p>
-                    <input type="password" name="pass" required placeholder="enter your password" maxlength="50" 
-                    oninput="this.value = this.value.replace(/\s/g, '')">
-                  </div>
-                 <input type="submit" name="submit" value="register now" class="btn">
-                 <p> do not have  an account? <a href="register.php">login now</a></p>
-
-                 <?php
-
-$conn = new mysqli("localhost", "root", "", "cactusdb");
-
-$username = "test@example.com";
-$password = password_hash("123", PASSWORD_DEFAULT);
-
-$stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-$stmt->bind_param("ss", $username, $password);
-
-
-
-?>
-
-
-
+            </div>
+            <input type="submit" name="submit" value="Login Now" class="btn">
+            <p>Don't have an account? <a href="register.php">Register Now</a></p>
+        </form>
+    </section>
+</div>
 
 </body>
 </html>
