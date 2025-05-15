@@ -554,48 +554,6 @@ body {
     }
 }
 
-/* CHECKOUT */
-body {
-  
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.checkout-container {
-    max-width: 600px;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-.product-summary {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.product-summary img {
-    max-width: 150px;
-    border-radius: 10px;
-}
-
-textarea, select, .btn {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.btn {
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: darkgreen;
-}
 
 .gallery  {
     display: grid;
