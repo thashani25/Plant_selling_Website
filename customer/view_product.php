@@ -48,8 +48,8 @@ $message = ''; // Initialize message variable for success/error
                 <form action="cart.php" method="post">
                     <input type="hidden" name="product_id" value="<?= $row['id']; ?>">
 
-                    <!-- Quantity -->
-                    <input type="number" name="qty" value="1" min="1" max="99" class="qty" required>
+                    <!-- Quantity 
+                    <input type="number" name="qty" value="1" min="1" max="99" class="qty" required> --->
 
                     <!-- Action buttons row -->
                     <div class="action-row">

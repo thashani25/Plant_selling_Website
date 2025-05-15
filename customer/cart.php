@@ -1,4 +1,7 @@
-
+<?php
+include 'conection.php';
+session_start();
+?>
 <style type="text/css">
     <?php include 'style.css'; ?>
 </style>
@@ -23,45 +26,66 @@
         <a href="home.php">Home</a><span>/ Add to Cart</span> 
     </div>
 
-    <?php
-include 'conection.php';
-
-
-
-$success_message = '';
-$error_message = '';
-
-?>
-
-    <?php if ($success_message): ?>
-        <div class="success-message"><?= $success_message; ?></div>
-    <?php endif; ?>
-    
-    <?php if ($error_message): ?>
-        <div class="error-message"><?= $error_message; ?></div>
-    <?php endif; ?>
-
-    <div class="cart-items">
+    <div class="gallery">
         <?php
-        while ($row = $cart_result->fetch_assoc()) {
-            $total_amount = $row['total_price']; // Calculate total amount
+        $result = $conn->query("SELECT * FROM products");
+        if ($result && $result->num_rows > 0):
+            while ($row = $result->fetch_assoc()):
+                $price = $row['price'];
+                $default_qty = 1;
+                $total = $price * $default_qty;
         ?>
-            <div class="cart-item">
-                <h3><?= htmlspecialchars($row['name']); ?></h3>
-                <p>Quantity: <?= htmlspecialchars($row['quantity']); ?></p>
-                <p>Total Price: Rs. <?= htmlspecialchars($row['total_price']); ?></p>
+            <div class="box" id="product_<?= $row['id'] ?>">
+                <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['name']) ?>">
+                <h3><?= htmlspecialchars($row['name']) ?></h3>
+                <span>Price: Rs. <?= number_format($price, 2) ?></span><br>
+
+                <label for="qty_<?= $row['id'] ?>">Qty:</label>
+                <input type="number" id="qty_<?= $row['id'] ?>" name="qty" value="1" min="1" max="99" class="qty" onchange="updateTotal(<?= $row['id'] ?>, <?= $price ?>)">
+
+                <div id="total_<?= $row['id'] ?>">Total: Rs. <?= number_format($total, 2) ?></div>
+
+                <div class="content">
+    <?php if (isset($_SESSION['username'])): ?>
+        <a href="checkout.php?action=add&id=<?= $row['id'] ?>&qty=1" onclick="return confirm('Add to cart?')">Add To Cart</a>
+        <a href="Cart/buy_now.php?id=<?= $row['id'] ?>" class="btn buy-now">Buy Now</a>
+        <button class="btn" onclick="goTocheckout(<?= $row['id'] ?>)">Checkout</button>
+        <button class="btn remove-btn" onclick="removeProduct(<?= $row['id'] ?>)">Remove</button>
+    
+        <?php else: ?>
+        <a href="checkout.php">Checkout</a>
+    <?php endif; ?>
+</div>
+
+
             </div>
-        <?php } ?>
-
-        <div class="cart-total">
-            <h3>Total Amount: Rs. <?= number_format($total_amount, 2); ?></h3>
-        </div>
-
-        <a href="checkout.php" class="checkout-button">Proceed to Checkout</a>
+        <?php
+            endwhile;
+        else:
+            echo "<p>No products found.</p>";
+        endif;
+        ?>
     </div>
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script>
+function updateTotal(id, price) {
+    const qty = document.getElementById('qty_' + id).value;
+    const total = price * qty;
+    document.getElementById('total_' + id).innerText = 'Total: Rs. ' + total.toFixed(2);
+}
+
+function goToCheckout(id) {
+    const qty = document.getElementById('qty_' + id).value;
+    window.location.href = 'checkout.php?product_id=' + id + '&qty=' + qty;
+}
+
+
+
+
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="script.js"></script>
@@ -69,7 +93,3 @@ $error_message = '';
 
 </body>
 </html>
-
-
-
-   
