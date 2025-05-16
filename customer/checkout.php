@@ -1,80 +1,112 @@
 <?php
 include 'conection.php';
 session_start();
-
-if (!isset($_SESSION['username'])) {
-    header("Location: checkout.php");
-    exit();
-}
-
-$product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
-$qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
-
-if ($product_id <= 0 || $qty <= 0) {
-    echo "Invalid product or quantity.";
-    exit();
-}
-
-$query = $conn->prepare("SELECT * FROM products WHERE id = ?");
-$query->bind_param("i", $product_id);
-$query->execute();
-$result = $query->get_result();
-
-if ($result->num_rows === 0) {
-    echo "Product not found.";
-    exit();
-}
-
-$product = $result->fetch_assoc();
-$total_price = $product['price'] * $qty;
 ?>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Checkout - Green Cactus</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <?php include 'header.php'; ?>
 
 <div class="main">
-    <div class="banner"><h1>Checkout</h1></div>
-
-    <div class="checkout-container">
-        <div class="checkout-box">
-            <h2><?= htmlspecialchars($product['name']) ?></h2>
-            <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" style="width:200px;">
-            <p>Unit Price: Rs. <?= number_format($product['price'], 2) ?></p>
-            <p>Quantity: <?= $qty ?></p>
-            <h3>Total: Rs. <?= number_format($total_price, 2) ?></h3>
-
-            <form action="process_payment.php" method="post">
-                <input type="hidden" name="product_id" value="<?= $product_id ?>">
-                <input type="hidden" name="qty" value="<?= $qty ?>">
-                <input type="hidden" name="expected_total" value="<?= $total_price ?>">
-
-                <label>Enter Payment Amount (Rs.):</label><br>
-                <input type="number" name="amount_paid" required step="0.01" min="1"><br><br>
-
-                <label>Payment Method:</label><br>
-                <select name="payment_method" required>
-                    <option value="">Select...</option>
-                    <option value="Card">Card</option>
-                    <option value="Cash on Delivery">Cash on Delivery</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
-                </select><br><br>
-
-                <label>Delivery Address:</label><br>
-                <textarea name="address" rows="4" required></textarea><br><br>
-
-                <button type="submit">Place Order</button>
-            </form>
-        </div>
+    <div class="banner">
+        <h1>checkout summary</h1>
     </div>
+    <div class="title2">
+        <a href="home.php">Home</a><span> / checkout summary </span>
+    </div>
+
+    <section class="checkout">
+        <div class="title2">
+            <img src="img/logo.png" class="logo">
+            <h1>checkout summary </h1>
+            <p>bbjxsdjweijfjdwebcqwoiodklc  cdbcdhc loqfkcvb olqlqkd cb okfcw </p>
+        </div>
+            <div class="row">
+                <form method="post">
+                    <h3>billing details</h3>
+                    <div class="flex">
+                        <div class="box">
+                            <div class="input-field">
+                                <p>your name <span>*</span></p>
+                                <input type="text" name="name" required maxlength="50" placeholder="Enter Your Name" class="input">
+                                </div>
+                                 <div class="input-field">
+                                <p>your number <span>*</span></p>
+                                <input type="number" name="number" required maxlength="50" placeholder="Enter Your Number" class="input">
+                                </div>
+                                 <div class="input-field">
+                                <p>your email <span>*</span></p>
+                                <input type="email" name="email" required maxlength="50" placeholder="Enter Your Email" class="input">
+                                </div>  
+                                 <div class="input-field">
+                                <p>payment method<span>*</span></p>
+                                <select name="method" class="input">
+                                    <option value="cash on delivery">cash on delivery</option>
+                                    <option value="credit or debit card">credit or debit card</option>
+                                </select>
+                            </div>
+                              <div class="input-field">
+                                 <p>address type<span>*</span></p>
+                                <select name="address_type" class="input">
+                                    <option value="home">home</option>
+                                    <option value="office">office</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="input-field">
+                                <p>address line 01 <span>*</span></p>
+                                <input type="text" name="flat" required maxlength="50" placeholder="E.g flat & building number" class="input">
+                                </div>
+                                 <div class="input-field">
+                                <p>address line 02 <span>*</span></p>
+                                <input type="text" name="street" required maxlength="50" placeholder="E.g. street name" class="input">
+                                </div>
+                                 <div class="input-field">
+                                <p>city name <span>*</span></p>
+                                <input type="text" name="city" required maxlength="50" placeholder="Enter your city" class="input">
+                                </div>
+                            </div>           
+                         </div>
+                     </div>
+                     <button type="submit" name="place_order" class="btn">place order</button>
+                </form>
+                <div class="summary">
+                    <h3>my bag </h3>
+                    <div class="box-container">
+                        <?php 
+                        $grand_total=0;
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+              <?php include 'footer.php'; ?> 
 </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="script.js"></script>
+    <?php include 'alert.php'; ?>
 
-<?php include 'footer.php'; ?>
 
+
+    
 </body>
 </html>

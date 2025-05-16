@@ -409,17 +409,9 @@ header.scrolled{
     background-color: #f44336;
 }
  /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-   
-    background-color: #f4f4f4;
-    color: #333;
-}
+
+
 
 /* Banner Section */
 .banner {
@@ -1418,6 +1410,27 @@ textarea{
 }
 .testimonial-container .container .left-arrow{
     left: 3rem;
+}
+
+/*------ checkout -----*/
+.checkout .title2 .logo{
+    width: 120px;
+    height: 80px;
+    margin: 10px;
+    top: 70px;
+    
+}
+.checkout .title2 h1 , p ,h3{
+    text-align: center;
+}
+.checkout .title2 h3{
+    font-weight: 100;
+}
+ .btn{
+    margin: 10px;
+    align-items: center;
+    left: 500px;
+
 }
 
    
