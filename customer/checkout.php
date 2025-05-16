@@ -81,14 +81,50 @@ session_start();
                 <div class="summary">
                     <h3>my bag </h3>
                     <div class="box-container">
-                        <?php 
-                        $grand_total=0;
-                    
+                       <?php 
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$user_id = $_SESSION['user_id'] ?? 0;
+
+$select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+$select_cart->execute([$user_id]);
+
+if ($select_cart->rowCount() > 0) {
+    while ($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)) {
+        $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
+        $select_products->execute([$fetch_cart['product_id']]);
+        $fetch_product = $select_products->fetch(PDO::FETCH_ASSOC);
+
+        if (!$fetch_product) {
+            echo "Error: Product not found for ID: " . $fetch_cart['product_id'];
+            continue;
+        }
+
+        $sub_total = $fetch_cart['qty'] * $fetch_product['price'];
+        $grand_total += $sub_total;
+        ?>
+        <div class="flex">
+            <img src="image/<?= $fetch_product['image']; ?>">
+            <div>
+                <h3 class="name"><?= $fetch_product['name']; ?></h3>
+                <p class="name"><?= $fetch_product['price']; ?> x <?= $fetch_cart['qty']; ?></p>
+            </div>
+        </div>
+        <?php
+    }
+} else {
+    echo "Cart is empty.";
+}
+?>
 
 
 
-
-
+                                </div>
+                          </div>
+                    </div>
+                    </section>
 
 
 

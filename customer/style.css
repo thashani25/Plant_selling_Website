@@ -1420,7 +1420,7 @@ textarea{
     top: 70px;
     
 }
-.checkout .title2 h1 , p ,h3{
+.checkout .title2 h1 , p{
     text-align: center;
 }
 .checkout .title2 h3{
@@ -1428,8 +1428,7 @@ textarea{
 }
  .btn{
     margin: 10px;
-    align-items: center;
-    left: 500px;
+   
 
 }
 
