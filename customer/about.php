@@ -103,18 +103,18 @@
                 </div>
                 <div class="container">
                     <div class="testimonial-item active">
-                       <img src="img/cus1.png"> 
-                       <h1> Omesh Hewage</h1>
+                       <img src="img/omesh.jpg"> 
+                       <h1> Omesh Tharaka</h1>
                        <p></p>
                      </div>
                      <div class="testimonial-item">
-                       <img src="img/cus.png"> 
-                       <h1>piyunil thashani</h1>
+                       <img src="img/kalani.jpg"> 
+                       <h1>Kalani Lanka</h1>
                        <p> </p>
                      </div>
                      <div class="testimonial-item">
-                       <img src="img/cus2.png"> 
-                       <h1>tharaka Thejamal</h1>
+                       <img src="img/chamo.jpg"> 
+                       <h1>Chamodya Nimeshi</h1>
                        <p>  </p>
                      </div>
                      <div class="left-arrow" onclick="nextSlide()"><i class="bx bxs-left-arrow-alt"></i></div>

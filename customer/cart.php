@@ -54,6 +54,7 @@ session_start();
     
         <?php else: ?>
         <a href="checkout.php">Checkout</a>
+        
     <?php endif; ?>
 </div>
 
@@ -65,6 +66,12 @@ session_start();
             echo "<p>No products found.</p>";
         endif;
         ?>
+
+
+
+
+
+      
     </div>
 </div>
 
