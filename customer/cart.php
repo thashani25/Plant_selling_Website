@@ -12,7 +12,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Green Cactus - Cart</title>
+    <title>Green Cactus - Shop</title>
 </head>
 <body>
 
@@ -20,10 +20,10 @@ session_start();
 
 <div class="main">
     <div class="banner">
-        <h1>Add to Cart</h1>
+        <h1>Products</h1>
     </div>
     <div class="title2">
-        <a href="home.php">Home</a><span>/ Add to Cart</span> 
+        <a href="home.php">Home</a><span>/ Shop</span> 
     </div>
 
     <div class="gallery">
@@ -46,19 +46,15 @@ session_start();
                 <div id="total_<?= $row['id'] ?>">Total: Rs. <?= number_format($total, 2) ?></div>
 
                 <div class="content">
-    <?php if (isset($_SESSION['username'])): ?>
-        <a href="checkout.php?action=add&id=<?= $row['id'] ?>&qty=1" onclick="return confirm('Add to cart?')">Add To Cart</a>
-        <a href="Cart/buy_now.php?id=<?= $row['id'] ?>" class="btn buy-now">Buy Now</a>
-        <button class="btn" onclick="goTocheckout(<?= $row['id'] ?>)">Checkout</button>
-        <button class="btn remove-btn" onclick="removeProduct(<?= $row['id'] ?>)">Remove</button>
-    
-        <?php else: ?>
-        <a href="checkout.php">Checkout</a>
-        
-    <?php endif; ?>
-</div>
-
-
+                <?php if (isset($_SESSION['username'])): ?>
+                    <button class="btn" onclick="addToCart(<?= $row['id'] ?>)">Add To Cart</button>
+                    <a href="Cart/buy_now.php?id=<?= $row['id'] ?>" class="btn buy-now">Buy Now</a>
+                    <button class="btn" onclick="goToCheckout(<?= $row['id'] ?>)">Checkout</button>
+                    <button class="btn remove-btn" onclick="removeProduct(<?= $row['id'] ?>)">Remove</button>
+                <?php else: ?>
+                    <a href="checkout.php">Checkout</a>
+                <?php endif; ?>
+                </div>
             </div>
         <?php
             endwhile;
@@ -66,12 +62,6 @@ session_start();
             echo "<p>No products found.</p>";
         endif;
         ?>
-
-
-
-
-
-      
     </div>
 </div>
 
@@ -84,14 +74,28 @@ function updateTotal(id, price) {
     document.getElementById('total_' + id).innerText = 'Total: Rs. ' + total.toFixed(2);
 }
 
+function addToCart(id) {
+    const qty = document.getElementById('qty_' + id).value;
+    if (qty < 1 || qty > 99) {
+        alert('Please enter a quantity between 1 and 99');
+        return;
+    }
+    if (confirm('Add ' + qty + ' item(s) to cart?')) {
+        window.location.href = 'checkout.php?action=add&id=' + id + '&qty=' + qty;
+    }
+}
+
 function goToCheckout(id) {
     const qty = document.getElementById('qty_' + id).value;
     window.location.href = 'checkout.php?product_id=' + id + '&qty=' + qty;
 }
 
-
-
-
+function removeProduct(id) {
+    if(confirm("Remove product with ID " + id + "?")) {
+        // Implement remove logic here if you want
+        alert("Remove functionality not implemented.");
+    }
+}
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

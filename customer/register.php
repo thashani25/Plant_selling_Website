@@ -5,7 +5,7 @@ session_start();
 $success_msg = '';
 $error_msg = '';
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $pass = $_POST['pass'];
@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     } elseif ($pass !== $cpass) {
         $error_msg = "Passwords do not match.";
     } else {
-        // Check if email exists
+        // Check if email already exists
         $stmt = $conn->prepare("SELECT id FROM register WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -25,9 +25,9 @@ if (isset($_POST['submit'])) {
         if ($stmt->num_rows > 0) {
             $error_msg = "Email already registered.";
         } else {
-            // Hash password and insert user
+            // Hash password and insert new user
             $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-            $insert = $conn->prepare("INSERT INTO register(name, email, password) VALUES (?, ?, ?)");
+            $insert = $conn->prepare("INSERT INTO register (name, email, password) VALUES (?, ?, ?)");
             $insert->bind_param("sss", $name, $email, $hashed_password);
 
             if ($insert->execute()) {
@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
                 $error_msg = "Something went wrong. Try again.";
             }
         }
+
         $stmt->close();
     }
 }
@@ -52,7 +53,7 @@ if (isset($_POST['submit'])) {
 <div class="main-container">
     <section class="form-container">
         <div class="title">
-            <img src="img/download.png" class="logo-img">
+            <img src="img/logo.png" class="logo-img">
             <h1>Register Now</h1>
             <p>Join Green Tea to enjoy shopping and more!</p>
         </div>
@@ -88,46 +89,6 @@ if (isset($_POST['submit'])) {
             <p>Already have an account? <a href="login.php">Login now</a></p>
         </form>
     </section>
-
-
-    <?php
-include 'connection.php';
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $pass = $_POST['pass'];
-    $cpass = $_POST['cpass'];
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error_msg = "Invalid email format.";
-    } elseif ($pass !== $cpass) {
-        $error_msg = "Passwords do not match.";
-    } else {
-        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            $error_msg = "Email already registered.";
-        } else {
-            $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-            $insert = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-            $insert->bind_param("sss", $name, $email, $hashed_password);
-
-            if ($insert->execute()) {
-                $success_msg = "Registration successful! <a href='login.php'>Click here to login</a>.";
-            } else {
-                $error_msg = "Something went wrong. Try again.";
-            }
-        }
-        $stmt->close();
-    }
-}
-?>
-
 </div>
 </body>
 </html>

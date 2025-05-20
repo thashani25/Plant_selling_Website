@@ -8,12 +8,10 @@ if (isset($_POST['submit'])) {
     $email = trim($_POST['email']);
     $pass = trim($_POST['pass']);
 
-    // Validate inputs
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error_msg = "Invalid email format";
+        $error_msg = "Invalid email format.";
     } else {
-        // Prepare and check user
-        $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, password FROM register WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
@@ -32,37 +30,11 @@ if (isset($_POST['submit'])) {
         } else {
             $error_msg = "Email not registered!";
         }
+
         $stmt->close();
     }
 }
 ?>
-
-<?php
-$conn = new mysqli("localhost", "root", "", "cactusdb");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$email = "admin@example.com";
-$password = "123456"; // plain text
-$hashed_password = password_hash($password, PASSWORD_DEFAULT); // hashed
-
-$stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
-$stmt->bind_param("ss", $email, $hashed_password);
-
-//if ($stmt->execute()) {
-  //  echo "Test user inserted successfully.<br>";
-  //  echo "Email: <strong>$email</strong><br>";
-  //  echo "Password: <strong>$password</strong>";
-//} else {
-  //  echo "Error: " . $stmt->error;
-//}
-
-$stmt->close();
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
