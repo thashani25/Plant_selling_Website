@@ -1453,15 +1453,8 @@ form {
     border: 1px solid #ddd;
 }
 
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
 
-.box {
-    flex: 1;
-}
+
 
 .input-field {
     margin-bottom: 15px;
@@ -1496,16 +1489,6 @@ form {
 }
 
 /* Cart Summary */
-.box-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.box-container .flex {
-    align-items: center;
-    gap: 15px;
-}
 
 .box-container h3 {
     margin-top: 10px;
