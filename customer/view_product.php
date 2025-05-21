@@ -24,7 +24,7 @@ $message = ''; // Initialize message variable for success/error
         <h1>Shop</h1>
     </div>
     <div class="title2">
-        <a href="home.php">Home</a><span>/ Our Shop</span>
+        <div class="title2"><a href="home.php">Home</a><span> / view products </span></div>
     </div>
 
     <div class="gallery">

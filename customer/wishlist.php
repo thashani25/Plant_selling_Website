@@ -32,7 +32,7 @@ if (isset($_POST['delete'])) {
         <h1>My Wishlist</h1>
     </div>
     <div class="title2">
-        <a href="home.php">Home</a><span> / Wishlist</span>
+       <div class="title2"><a href="home.php">Home</a><span> / whishlist</span></div>
     </div>
 
     <div class="gallery">

@@ -75,7 +75,7 @@ if (isset($_POST['add_to_wishlist'])) {
         <h1>Product Details</h1>
     </div>
     <div class="title2">
-        <a href="home.php">Home</a> <span>/ Product Details</span>
+        <div class="title2"><a href="home.php">Home</a><span> / product details</span></div>
     </div>
 
     <section class="view_page">

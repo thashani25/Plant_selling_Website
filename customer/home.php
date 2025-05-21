@@ -145,73 +145,7 @@
                  </div>
              </div>
         </section>
-        <section class="shop">
-            <div class="titel">
-            <div class="row">
-                <div class="row-detail">
-                     </div>
-                </div>
-            </div>
-            <div class="box-container">
-                <div class="box">
-                    <img src="img\4.jpg">
-                    <!-- Example inside a loop that shows multiple products -->
-                    <a href="view_products.php">
-                  <button class="btn">shop now</button></a>
-
-                </div>
-                <div class="box">
-                    <img src="img/6.jpg">
-                   <!-- Example inside a loop that shows multiple products -->
-                  <a href="view_products.php">
-                  <button class="btn">shop now</button></a>
-
-                    
-                </div>
-                <div class="box">
-                    <img src="img/9.jpg">
-                   <!-- Example inside a loop that shows multiple products -->
-                   <a href="view_products.php">
-                  <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/9.jpg">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/9.jpg">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/9.jpg">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/9.jpg">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/cart6.png">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/cart10.png">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                <div class="box">
-                    <img src="img/cart12.png">
-                    <a href="view_products.php">
-                    <button class="btn">shop now</button></a>
-                </div>
-                
-             </div>
-        </section>
+       
          <section class="services">
             <div class="box-container">
                 <div class="box">

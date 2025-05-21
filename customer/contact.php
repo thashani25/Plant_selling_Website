@@ -20,7 +20,7 @@
         <h1>contact us </h1>
      </div>
      <div class="title2">
-        <a hrfe="home.php">home</a><span>contact</span> 
+       <div class="title2"><a href="home.php">Home</a><span> / Contact</span></div>
      </div>
 <section class="services">
             <div class="box-container">

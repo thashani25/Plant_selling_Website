@@ -20,42 +20,9 @@
         <h1>about us </h1>
      </div>
      <div class="title2">
-        <a hrfe="home.php">home</a><span>about</span> 
+      <div class="title2"><a href="home.php">Home</a><span> / about</span></div>
      </div>
-     <div class="about-category">
-        <div class="box">
-            <img src="img/about1.png">
-            <div class="detail">
-                <span>cactus</span>
-                <h1>powder pulf</h1>
-                <a href="view-products.php" class="btn">shop now</a>
-             </div>
-        </div>
-        <div class="box">
-            <img src="img/about2.png">
-            <div class="detail">
-                <span>cactus</span>
-                <h1>domino</h1>
-                <a href="view-products.php" class="btn">shop now</a>
-             </div>
-        </div>
-        <div class="box">
-            <img src="img/about6.png">
-            <div class="detail">
-                <span>cactus</span>
-                <h1>golden barrel</h1>
-                <a href="view-products.php" class="btn">shop now</a>
-             </div>
-        </div>
-        <div class="box">
-            <img src="img/about5.png">
-            <div class="detail">
-                <span>cactus</span>
-                <h1>....</h1>
-                <a href="view-products.php" class="btn">shop now</a>
-             </div>
-        </div>
-    </div>
+     
     <section class="services">
         <div class="title">
             <img src="img/logo.png" class="logo">
@@ -97,7 +64,7 @@
          
         <div class="testimonial-container">
             <div class="title">
-                <img src="img/logo.png" class="logo">
+                
                 <h1>what pepole say about us</h1>
                 <p> the customer feedback for our service </p>
                 </div>
