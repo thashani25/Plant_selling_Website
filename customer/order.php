@@ -43,85 +43,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Checkout - Green Cafee</title>
+    <title> Green Cactus- order page</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .success-box {
-            border: 2px solid #4CAF50;
-            background-color: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            color: #2e7d32;
-            margin-bottom: 20px;
-        }
-
-        .error-box {
-            border: 2px solid #f44336;
-            background-color: #ffebee;
-            padding: 20px;
-            border-radius: 10px;
-            color: #c62828;
-            margin-bottom: 20px;
-        }
-
-        .checkout-container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 10px;
-        }
-
-        form input, form textarea, form select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        form button.btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        table.cart-summary-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table.cart-summary-table th, table.cart-summary-table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-
-        table.cart-summary-table img {
-            height: 50px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
+
 <?php include 'header.php'; ?>
 
 <div class="main">
-    <div class="banner"><h1>Checkout Summary</h1></div>
-    <div class="title2"><a href="home.php">Home</a><span> / Checkout Summary</span></div>
+    <div class="banner">
+        <h1>my order</h1>
+    </div>
+    <div class="title2">
+        <a href="home.php">Home</a> <span>/ order</span>
+    </div>
 
-    <div class="checkout-container">
-
-        <?= $success_message ?>
+    <section class="products">
+        <div class="box-container">
+            <div class="title">
+                <img src="img/logo.png" class="logo">
+                <h1>my orders </h1>
+                <p> skjad ksabnc ;sdjk;c nxbc jsdhbuias;l c nbjhvbsk lskj </p>
+            </div>
+</section>
 
         <?php if (!empty($errors)): ?>
             <div class="error-box">
@@ -133,10 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <div class="cart-summary-box">
+        <div class="cart-summ">
             <h3>Cart Summary</h3>
             <?php if (!empty($_SESSION['cart'])): ?>
-                <table class="cart-summary-table">
+                <table class="cart-table">
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -174,29 +123,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Your cart is empty.</p>
             <?php endif; ?>
         </div>
-
-        <div class="cart-summary-box">
-            <h3>Customer & Payment Details</h3>
-            <form method="POST">
-                <input type="text" name="name" placeholder="Your Name" required value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
-                <input type="text" name="phone" placeholder="Phone Number" required value="<?= isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '' ?>">
-                <input type="email" name="email" placeholder="Email Address" required value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
-                <textarea name="address" placeholder="Delivery Address" required><?= isset($_POST['address']) ? htmlspecialchars($_POST['address']) : '' ?></textarea>
-
-                <label for="payment_method">Payment Method:</label>
-                <select name="payment_method" required>
-                    <option value="">-- Select Payment Method --</option>
-                    <option value="Credit Card" <?= (isset($_POST['payment_method']) && $_POST['payment_method'] == 'Credit Card') ? 'selected' : '' ?>>Credit Card</option>
-                    <option value="Cash" <?= (isset($_POST['payment_method']) && $_POST['payment_method'] == 'Cash') ? 'selected' : '' ?>>Cash</option>
-                </select>
-
-                <button type="submit" class="btn">Place Order</button>
-            </form>
+         <div style="text-align:center; margin-top:20px;">
+            
+            <a href="checkout.php" style="padding:10px 20px; background:#2196F3; color:#fff; border-radius:6px; text-decoration:none; margin-left:10px;">pace to checkout</a>
         </div>
+
+               <a href="cart.php">Go to cart</a></p>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 
 <?php include 'footer.php'; ?>
+</di
 <script src="script.js"></script>
 </body>
 </html>

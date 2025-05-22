@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_qty'])) {
 
         <div style="text-align:center; margin-top:20px;">
             <a href="view_product.php" style="padding:10px 20px; background:#4caf50; color:#fff; border-radius:6px; text-decoration:none;">Continue Shopping</a>
-            <a href="checkout.php" style="padding:10px 20px; background:#2196F3; color:#fff; border-radius:6px; text-decoration:none; margin-left:10px;">Proceed to Checkout</a>
+            <a href="order.php" style="padding:10px 20px; background:#2196F3; color:#fff; border-radius:6px; text-decoration:none; margin-left:10px;">order</a>
         </div>
 
     <?php else: ?>

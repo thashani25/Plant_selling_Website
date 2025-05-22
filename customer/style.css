@@ -1515,7 +1515,7 @@ ul[style="color:red;"] {
 
 .cart-summary-box button.btn {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #9fdfa1;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -1526,6 +1526,91 @@ ul[style="color:red;"] {
     background-color: #45a049;
     
 }
+/*-------*/
+/* Cart Summary Container */
+.cart-summary-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+/* Cart Title */
+.cart-summary-box h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Box Container for Cart Summary */
+.cart-summ {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Center the Heading */
+.cart-summ h3 {
+    text-align: center;
+    font-size: 26px;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 10px;
+}
+
+/* Cart Table Styling */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Table Headers */
+.cart-table thead th {
+    background-color: #8ad369;
+    color: white;
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Table Cells */
+.cart-table td {
+    padding: 14px;
+    text-align: center;
+    border: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* Product Image Styling */
+.cart-table td img {
+    width: 60px;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Total Row Footer */
+.cart-table tfoot td {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #f9f9f9;
+    color: #000;
+}
+
+
 /* cart table*/
  table { width: 90%; margin: 20px auto; border-collapse: collapse; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
@@ -1535,7 +1620,7 @@ ul[style="color:red;"] {
         input.qty-input { width: 50px; text-align: center; }
         button.update-btn {
             padding: 8px 15px;
-            background: #2196F3;
+            background: #27c965;
             color: white;
             border: none;
             border-radius: 5px;
@@ -1569,11 +1654,11 @@ ul[style="color:red;"] {
         }
         .alert {
             background-color: #e3f2fd;
-            border: 1px solid #90caf9;
+            border: 1px solid #90f9b8;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
-            color: #0d47a1;
+            color: #1ab656;
         }
 
 
