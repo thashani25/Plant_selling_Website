@@ -58,10 +58,6 @@ $message = ''; // Initialize message variable for success/error
                             <i class="bx bx-cart"></i> 
                         </button>
 
-                        <!-- Buy Now -->
-                        <button type="button" onclick="buyNow(this.form)" title="Buy Now">
-                            <i class="bx bx-credit-card"></i> 
-                        </button>
 
                         <!-- Add to Wishlist -->
                         <a href="wishlist.php?product_id=<?= $row['id']; ?>" title="Add to Wishlist">

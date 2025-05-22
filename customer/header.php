@@ -1,9 +1,9 @@
 <header class="header"> 
     <div class="flex">
-        <a href="dashboard.php" class="logo"><img src="img/logo.png"></a>
+        <a href="home.php" class="logo"><img src="img/logo.png"></a>
 
         <nav class="navbar">
-            <a href="dashboard.php">home</a>
+            <a href="home.php">home</a>
             <a href="view_product.php">products</a>
             <a href="order.php">orders</a>
             <a href="about.php">about</a>

@@ -85,4 +85,24 @@ function prevSlide(){
 
 ///    tag \\
 
-
+  // Wait until DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const successMsg = document.querySelector('.success-message');
+    if (successMsg) {
+      // Hide message after 3 seconds (3000 ms)
+      setTimeout(() => {
+        // Fade out effect
+        successMsg.style.transition = 'opacity 0.5s ease';
+        successMsg.style.opacity = '0';
+        // Remove from DOM after fade out
+        setTimeout(() => successMsg.remove(), 500);
+      }, 3000);
+    }
+  });
+  
+ 
+            // Redirect after 5 seconds (5000 ms)
+            setTimeout(() => {
+                window.location.href = 'checkout.php';  // Change to your desired page
+            }, 5000);
+        

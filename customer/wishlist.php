@@ -1,76 +1,159 @@
 <?php
-include 'conection.php';
 session_start();
+include 'conection.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    die("Please <a href='login.php'>login</a> to view your wishlist.");
+if (!isset($_SESSION['wishlist'])) {
+    $_SESSION['wishlist'] = [];
 }
 
-$user_id = $_SESSION['user_id'];
+$message = '';
 
-// Delete item from wishlist
-if (isset($_POST['delete'])) {
-    $wishlist_id = $_POST['wishlist_id'];
-    $delete_query = $conn->prepare("DELETE FROM wishlist WHERE id = ? AND user_id = ?");
-    $delete_query->bind_param("ii", $wishlist_id, $user_id);
-    $delete_query->execute();
+// Clear wishlist if requested
+if (isset($_GET['clear']) && $_GET['clear'] == 1) {
+    $_SESSION['wishlist'] = [];
+    $message = "Wishlist cleared.";
+}
+
+// Add to wishlist if product_id is passed via GET
+if (isset($_GET['product_id'])) {
+    $product_id = $_GET['product_id'];
+
+    // Check if product already in wishlist
+    $in_wishlist = false;
+    foreach ($_SESSION['wishlist'] as $item) {
+        if ($item['id'] == $product_id) {
+            $in_wishlist = true;
+            break;
+        }
+    }
+
+    if (!$in_wishlist) {
+        $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+
+        if ($product) {
+            $_SESSION['wishlist'][] = [
+                'id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'image' => $product['image']
+            ];
+            $message = "Added to wishlist!";
+        } else {
+            $message = "Product not found.";
+        }
+    } else {
+        $message = "Already in wishlist.";
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Wishlist - Green Cactus</title>
+    <title>Wishlist - Green Cactus</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .wishlist-container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        .product-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .product-box img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .action-row {
+            margin-top: 10px;
+        }
+        .btn-bar {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .btn-bar a {
+            padding: 10px 20px;
+            background-color: #444;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+        .alert {
+            background: #def;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #3399cc;
+        }
+    </style>
 </head>
 <body>
+
 <?php include 'header.php'; ?>
 
 <div class="main">
     <div class="banner">
-        <h1>My Wishlist</h1>
+        <h1>Your Wishlist</h1>
     </div>
     <div class="title2">
-       <div class="title2"><a href="home.php">Home</a><span> / whishlist</span></div>
+        <a href="home.php">Home</a> <span>/ Wishlist</span>
     </div>
 
-    <div class="gallery">
-        <?php
-        $stmt = $conn->prepare("SELECT wishlist.id AS wid, products.* FROM wishlist JOIN products ON wishlist.product_id = products.id WHERE wishlist.user_id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    <div class="wishlist-container">
+        <?php if (!empty($message)): ?>
+            <div class="alert"><?= htmlspecialchars($message); ?></div>
+        <?php endif; ?>
 
-        if ($result->num_rows > 0) {
-            while ($product = $result->fetch_assoc()) {
-                echo '<div class="product-box">';
-                echo "<h2>" . htmlspecialchars($product['name']) . "</h2>";
-                echo "<p>R.S. " . htmlspecialchars($product['price']) . "</p>";
-                echo "<img src='" . htmlspecialchars($product['image']) . "' alt='" . htmlspecialchars($product['name']) . "'>";
+        <div class="btn-bar">
+            <?php if (!empty($_SESSION['wishlist'])): ?>
+                <a href="wishlist.php?clear=1">Clear Wishlist</a>
+            <?php endif; ?>
+            <a href="view_product.php">Back to Shop</a>
+        </div>
 
-                echo '<form method="post">';
-                echo '<input type="hidden" name="wishlist_id" value="' . $product['wid'] . '">';
-                echo '<button type="submit" name="delete" class="btn">Remove</button>';
-                echo '</form>';
+        <?php if (!empty($_SESSION['wishlist'])): ?>
+            <div class="gallery">
+                <?php foreach ($_SESSION['wishlist'] as $item): ?>
+                    <div class="product-box">
+                        <img src="<?= htmlspecialchars($item['image']); ?>" alt="<?= htmlspecialchars($item['name']); ?>">
+                        <h2><?= htmlspecialchars($item['name']); ?></h2>
+                        <p>Rs. <?= number_format($item['price'], 2); ?></p>
 
-                echo '<form action="checkout.php" method="POST">';
-                echo '<input type="hidden" name="product_id" value="' . $product['id'] . '">';
-                echo '<input type="number" name="qty" value="1" min="1" max="99" class="qty" required>';
-                echo '<button type="submit" name="add_to_cart" class="buy-btn">Buy Now</button>';
-                echo '</form>';
-
-                echo '</div>';
-            }
-        } else {
-            echo '<p style="text-align:center;">Your wishlist is empty.</p>';
-        }
-
-        $stmt->close();
-        ?>
+                        <div class="action-row">
+                            <form action="cart.php" method="post" style="display:inline;">
+                                <input type="hidden" name="product_id" value="<?= $item['id']; ?>">
+                                <button type="submit" name="add_to_cart" title="Add to Cart">
+                                    <i class="bx bx-cart"></i>
+                                </button>
+                            </form>
+                            <a href="view_page.php?pid=<?= $item['id']; ?>" title="View Product">
+                                <i class="bx bxs-show"></i>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <p>Your wishlist is empty.</p>
+        <?php endif; ?>
     </div>
 </div>
 
 <?php include 'footer.php'; ?>
+<script src="script.js"></script>
 </body>
 </html>
