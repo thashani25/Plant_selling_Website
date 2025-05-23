@@ -1,6 +1,8 @@
 <?php
 session_start();
-include 'conection.php'; // replace with your actual DB connection file
+
+// DB connection (make sure this file contains valid $conn connection)
+include 'conection.php';
 
 $total = 0;
 if (isset($_SESSION['cart'])) {
@@ -50,69 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Checkout - Green Cafee</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .success-box {
-            border: 2px solid #4CAF50;
-            background-color: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            color: #2e7d32;
-            margin-bottom: 20px;
-        }
-
-        .error-box {
-            border: 2px solid #f44336;
-            background-color: #ffebee;
-            padding: 20px;
-            border-radius: 10px;
-            color: #c62828;
-            margin-bottom: 20px;
-        }
-
-        .checkout-container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 10px;
-        }
-
-        form input, form textarea, form select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        form button.btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        table.cart-summary-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table.cart-summary-table th, table.cart-summary-table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-
-        table.cart-summary-table img {
-            height: 50px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
+
 <?php include 'header.php'; ?>
 
 <div class="main">
@@ -154,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         ?>
                         <tr>
                             <td>
-                                <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+                                <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" width="50">
                                 <?= htmlspecialchars($item['name']) ?>
                             </td>
                             <td><?= $item['qty'] ?></td>
