@@ -170,6 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['remove_item'])) {
             <p>No previous orders found.</p>
         <?php endif;
     } ?>
+    <a href="checkout.php" class="btn">checkout</a></p>
 </div>
 <?php include 'footer.php'; ?>
 <script src="script.js"></script>
