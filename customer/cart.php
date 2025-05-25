@@ -90,7 +90,7 @@ if (isset($_GET['remove'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Shopping Cart</title>
+    <title>Green Cactus - cart page</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>

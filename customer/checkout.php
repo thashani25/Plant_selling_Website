@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Checkout - Green Cafee</title>
+    <title>Green Cactus - checkout page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>

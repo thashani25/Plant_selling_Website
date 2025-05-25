@@ -31,7 +31,7 @@
                 <ul>
                     <li>Order</li>
                     <li>Help Center</li>
-                    <li>Shipping</li>
+                    <li>Shoipping</li>
                     <li>Terms of Use</li>
                     <li>Account Details</li>
                     <li>My Account</li>
