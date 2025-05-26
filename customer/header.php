@@ -8,6 +8,8 @@
             <a href="order.php">orders</a>
             <a href="about.php">about</a>
             <a href="contact.php">contact us</a>
+            <a href="admin/admin_dashboard.php">Admin</a>
+            </a>
         </nav>
         <div class="icons">
             <i class="bx bxs-user" id="user-btn"></i>

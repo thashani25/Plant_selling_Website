@@ -37,14 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Confirmation has been sent to <strong>$email</strong>.</p>
                     <p>Payment Method: <strong>$payment_method</strong></p>
                     <p>Total Payment: <strong>Rs. " . number_format($total, 2) . "</strong></p>
+                  
                 </div>
             ";
+              
         } else {
             $errors[] = "Failed to place order. Please try again.";
         }
     }
 }
 ?>
+  
 
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +135,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="Cash" <?= (isset($_POST['payment_method']) && $_POST['payment_method'] == 'Cash') ? 'selected' : '' ?>>Cash</option>
                 </select>
 
-                <button type="submit" class="btn">Place Order</button>
+                <button type="submit" class="btn">Place Order</button>   
+                <a href="home.php"><i class="fa-solid fa-house"></i></a>
+
             </form>
         </div>
     </div>

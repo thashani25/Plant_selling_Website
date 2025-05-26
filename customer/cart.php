@@ -2,6 +2,8 @@
 session_start();
 include 'conection.php';
 
+
+
 // Handle AJAX quantity update directly
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_update'])) {
     $product_id = (int)$_POST['product_id'];
