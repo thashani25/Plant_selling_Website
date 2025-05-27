@@ -101,8 +101,4 @@ function prevSlide(){
   });
   
  
-            // Redirect after 5 seconds (5000 ms)
-            setTimeout(() => {
-                window.location.href = 'checkout.php';  // Change to your desired page
-            }, 5000);
-        
+         
