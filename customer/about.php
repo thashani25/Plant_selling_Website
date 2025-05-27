@@ -72,6 +72,12 @@
                     <div class="testimonial-item active">
                        <img src="img/omesh.jpg"> 
                        <h1> Omesh Tharaka</h1>
+                       <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-instagram"></a>
+        </div>
                        <p></p>
                      </div>
                      <div class="testimonial-item">
