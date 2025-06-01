@@ -72,23 +72,60 @@
                     <div class="testimonial-item active">
                        <img src="img/omesh.jpg"> 
                        <h1> Omesh Tharaka</h1>
-                       <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-linkedin"></a>
-            <a href="#" class="fab fa-instagram"></a>
-        </div>
-                       <p></p>
+                    <div class="rating">
+                        <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star-half'></i>
+      
+                    </div>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                     </div>
+                <p>Green Cactus provided excellent service! Highly recommend.</p>
+       
                      </div>
                      <div class="testimonial-item">
                        <img src="img/kalani.jpg"> 
                        <h1>Kalani Lanka</h1>
-                       <p> </p>
+                      <div class="rating">
+                        <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star-half'></i>
+      
+                    </div>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                        <a href="#" class="fab fa-instagram"></a>
                      </div>
+                     <p>Friendly customer service and fast delivery. Will shop again.</p>
+                 </div>
                      <div class="testimonial-item">
                        <img src="img/chamo.jpg"> 
                        <h1>Chamodya Nimeshi</h1>
-                       <p>  </p>
+                        <div class="rating">
+                        <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star-half'></i>
+      
+                    </div>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                     </div>
+                       <p> Good quality plants. Slight delay in shipping but overall good. </p>
                      </div>
                      <div class="left-arrow" onclick="nextSlide()"><i class="bx bxs-left-arrow-alt"></i></div>
                      <div class="right-arrow" onclick="prevSlide()"><i class="bx bxs-right-arrow-alt"></i></div>

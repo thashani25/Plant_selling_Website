@@ -20,10 +20,10 @@ html{
 }
 
 body{
-    background-image: url('img/body-bg.jpg');
+     background-color: #cefadd;
     width: 100%;
     font-family: Italianno;
-    background-color: #aee2ba;
+    
 }
 
 .main{
@@ -197,7 +197,7 @@ header{
     z-index: 101;
     transition: .3s;
     box-shadow: var(--box-shadow);
-    background-image: url('img/body-bg.jpg');
+    background-color: #cefadd;
 }
 
 header.scrolled{
@@ -925,10 +925,9 @@ header.scrolled{
 .slider-slider .slide-detail h1{
     font-family: 'Special Elite', cursive;
     font-style: italic;
-    font-size: 44px;
+    font-size: 48px;
     color: #def55e;
-    text-align: center;
-    margin-top: 40px;
+    right: 100px;
     text-transform: uppercase;
     position: relative;
     opacity: 10;
@@ -947,49 +946,30 @@ header.scrolled{
         transform: translateY(0);
     }
 }
-.slider-slider .slide-detail h1::before{
-    position: absolute;
-    content: '';
-    background: #a8383844;
-    width: 380px;
-    height: 1px;
-    bottom: -40%;
-    left: 20%;
-}
-.slider-slider .slide-detail h1::after{
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    bottom: -50%;
-    left: 50%;
-    background: #f7b90f; 
-}
-.slider-slider .slide-detail p{
+
+.slider-slider .slide-detail p, a{
+  left: 60px;
   font-size: 14px;
-  color: #111111;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  color: #000000;
 }
 .slide1{
-    background-image: url('img/s3.jpg');
+    background-image: url('img/back9.jpg');
 
 }
 .slide2{
-    background-image: url('img/s5.jpg');
+    background-image: url('img/back10.jpg');
     
 }
 .slide3{
-    background-image: url('img/s9.jpg');
+    background-image: url('img/back3.jpg');
     
 }
 .slide4{
-    background-image: url('img/s7.jpg');
+    background-image: url('img/back4.jpg');
     
 }
 .slide5{
-    background-image: url('img/s8.jpg');
+    background-image: url('img/back6.jpg');
     
 }
 .left-arrow,
@@ -1018,24 +998,32 @@ header.scrolled{
 .left-arrow{
     left: 1rem;
 }
-.hero-dec-top,
-.hero-dec-bottom{
-    position: absolute;
-    left: 5%;
-    width: 100px;
-    height: 100px;
-}
-.hero-dec-top{
-    top: 4%;
-    border-right: 2px solid #e2e2e255;
-    border-top: 2px solid #e2e2e255;
-}
-.hero-dec-bottom{
-    bottom: 5%;
-    border-left: 2px solid #e2e2e255;
-    border-bottom: 2px solid #e2e2e255;
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .slide-detail h1 {
+        font-size: 1.5rem;
+    }
+
+    .slide-detail p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 8px 16px;
+    }
+
+    .box-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-arrow, .right-arrow {
+        font-size: 1.5rem;
+    }
 }
 
+/*produvts*/
 .thumb{
     max-width: 1200px;
     box-shadow: var(--box-shadow);
@@ -1431,6 +1419,13 @@ textarea{
 .testimonial-container .container .left-arrow{
     left: 3rem;
 }
+ /* tharu about us */
+ 
+.rating {
+    margin: 10px 0;
+    color: #fbc02d; /* Gold color */
+    font-size: 1.3rem;
+}
 
 
 .success-box {
@@ -1762,7 +1757,7 @@ footer .inner-footer .card li {
     
 }
 footer .inner-footer .card li:hover {
-    color: var(--light-green);
+    color: #7ddf7d;
 }
 footer .inner-footer .card li:nth-child(1),
 footer .inner-footer .card p {
