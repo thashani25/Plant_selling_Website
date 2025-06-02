@@ -927,7 +927,7 @@ header.scrolled{
     font-style: italic;
     font-size: 48px;
     color: #def55e;
-    right: 100px;
+    left: 90px;
     text-transform: uppercase;
     position: relative;
     opacity: 10;
@@ -947,10 +947,16 @@ header.scrolled{
     }
 }
 
-.slider-slider .slide-detail p, a{
-  left: 60px;
-  font-size: 14px;
+.slider-slider .slide-detail p{
+  font-size: 15px;
+  margin: 30px;
   color: #000000;
+  left: -90px;
+  
+}
+.slider-slider .slide-detail a{
+    right: -100px;
+    margin: 30px;
 }
 .slide1{
     background-image: url('img/back9.jpg');

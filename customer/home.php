@@ -18,7 +18,7 @@
                 <div class="slider-slider slide<?= $i ?>">
                     <div class="overlay"></div>
                     <div class="slide-detail">
-                        <h1>Welcome to Cactus Web Page</h1>
+                        <h1>Welcome...</h1>
                         <p>Dear friends<br>Your destination for quality and exotic cactus.</p>
                         <a href="view_product.php" class="btn">Shop Now</a>
                     </div>
