@@ -9,7 +9,7 @@ if (!isset($_GET['pid'])) {
 }
 
 $product_id = intval($_GET['pid']);
-$stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM iew_products WHERE id = ?");
 $stmt->bind_param("i", $product_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -72,7 +72,7 @@ $product = $result->fetch_assoc();
             <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
             <h2><?= htmlspecialchars($product['name']) ?></h2>
             <p><strong>Price:</strong> Rs. <?= number_format($product['price'], 2) ?></p>
-           <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
+           <p><?= (htmlspecialchars($product['description'])) ?></p>
 
 
             <div class="action-row">
