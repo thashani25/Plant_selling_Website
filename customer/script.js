@@ -1,5 +1,5 @@
 const header = document.querySelector('header');
-function fixedNavbar(){
+function fixedNavbar() {
     header.classList.toggle('scroll', window.pageYOffset > 0)
 }
 fixedNavbar();
@@ -8,97 +8,93 @@ window.addEventListener('scroll', fixedNavbar);
 let menu = document.querySelector('#menu-btn');
 let userBtn = document.querySelector('#user-btn');
 
-menu.addEventListener('click', function(){
+menu.addEventListener('click', function () {
     let nav = document.querySelector('.navbar');
     nav.classList.toggle('active');
 });
-userBtn.addEventListener('click', function(){
+userBtn.addEventListener('click', function () {
     let userBox = document.querySelector('.user-box');
     userBox.classList.toggle('active');
 });
 
 
-/*------home page------*/
-"use strict";
+const leftArrow = document.querySelector(".left-arrow");
+const rightArrow = document.querySelector(".right-arrow");
+let currentIndex = 0;
+let slideInterval = setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
 
-const leftArrow = document.querySelector('.left-arrow'),
-      rightArrow = document.querySelector('.right-arrow'),
-      slider = document.querySelector('.slider');
-
-/*----scroll right-----*/
-function scrollRight() {
-    if (slider.scrollWidth - slider.clientWidth === slider.scrollLeft) {
-        slider.scrollTo({
-            left: 0,
-            behavior: "smooth"
-        });
-    } else {
-        slider.scrollBy({
-            left: window.innerWidth,
-            behavior: "smooth"
-        });
-    }
-}
-
-/*----scroll left-----*/
-function scrollLeft() {
-    slider.scrollBy({
-        left: -window.innerWidth,
-        behavior: "smooth"
+function showSlide(index) {
+    (document.querySelectorAll(".slider-slider")).forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) {
+            slide.classList.add("active");
+        }
     });
 }
 
-let timerId = setInterval(scrollRight, 7000);
-
-/*----reset timer to scroll right-----*/
-function resetTimer() {
-    clearInterval(timerId);
-    timerId = setInterval(scrollRight, 7000);
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % (document.querySelectorAll(".slider-slider")).length;
+    showSlide(currentIndex);
 }
 
-/*----scroll event-----*/
-leftArrow.addEventListener('click', function() {
-    scrollLeft();
-    resetTimer();
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + (document.querySelectorAll(".slider-slider")).length) % (document.querySelectorAll(".slider-slider")).length;
+    showSlide(currentIndex);
+}
+
+// Event listeners for arrows
+rightArrow.addEventListener("click", () => {
+    nextSlide();
+    resetInterval();
 });
 
-rightArrow.addEventListener('click', function() {
-    scrollRight();
-    resetTimer();
+leftArrow.addEventListener("click", () => {
+    prevSlide();
+    resetInterval();
 });
+
+// Reset interval on manual slide
+function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+// Initial display
+showSlide(currentIndex);
+
 /*----testimonial slider-----*/
 
 let slides = document.querySelectorAll('.testimonial-item');
 let index = 0;
 
-function nextSlide(){
-   slides[index].classList.remove('active');
-    index = (index + 1) % slides.length;
-    slides[index].classList.add('active');
+function nextSlide() {
+    (document.querySelectorAll(".slider-slider"))[index].classList.remove('active');
+    index = (index + 1) % (document.querySelectorAll(".slider-slider")).length;
+    (document.querySelectorAll(".slider-slider"))[index].classList.add('active');
 }
 
-function prevSlide(){
-   slides[index].classList.remove('active');
-    index = (index - 1 + slides.length) % slides.length;
-    slides[index].classList.add('active');
+function prevSlide() {
+    (document.querySelectorAll(".slider-slider"))[index].classList.remove('active');
+    index = (index - 1 + (document.querySelectorAll(".slider-slider")).length) % (document.querySelectorAll(".slider-slider")).length;
+    (document.querySelectorAll(".slider-slider"))[index].classList.add('active');
 }
 
 ///    tag \\
 
-  // Wait until DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', function() {
+// Wait until DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function () {
     const successMsg = document.querySelector('.success-message');
     if (successMsg) {
-      // Hide message after 3 seconds (3000 ms)
-      setTimeout(() => {
-        // Fade out effect
-        successMsg.style.transition = 'opacity 0.5s ease';
-        successMsg.style.opacity = '0';
-        // Remove from DOM after fade out
-        setTimeout(() => successMsg.remove(), 500);
-      }, 3000);
+        // Hide message after 3 seconds (3000 ms)
+        setTimeout(() => {
+            // Fade out effect
+            successMsg.style.transition = 'opacity 0.5s ease';
+            successMsg.style.opacity = '0';
+            // Remove from DOM after fade out
+            setTimeout(() => successMsg.remove(), 500);
+        }, 3000);
     }
-  });
-  
- 
-         
+});
+
+
+
