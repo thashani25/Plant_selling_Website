@@ -4,13 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Cactus - Home Page</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css"> <!-- Correct way to include external CSS -->
-    <style type="text/css">
-        <?php include 'style.css'; ?>
-    
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- External CSS file -->
+    <style>
+        /* Scroll to Top Button Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Animation for smooth appearance */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-to-top.show {
+            animation: fadeInUp 0.3s ease;
+        }
+    </style>
 </head>
- 
+
 <body>
 
     <?php include 'header.php'; ?>
@@ -25,7 +77,6 @@
                     <div class="overlay"></div>
                     <div class="slide-detail">
                         <h1>Welcome...</h1>
-                        
                         <a href="view_product.php" class="btn">Shop Now</a>
                     </div>
                     <div class="hero-dec-top"></div>
@@ -39,10 +90,8 @@
             </div>
         </section>
 
-       
-
         <!-- Promotion Section -->
-         <section class="container">
+        <section class="container">
             <div class="box-container">
                 <div class="box">
                     <img src="img/off.png" alt="Promotion">
@@ -66,6 +115,11 @@
             </div>
         </section>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" title="Back to Top">
+        <i class="bx bx-up-arrow-alt"></i>
+    </button>
 
     <?php include 'footer.php'; ?>
 
@@ -141,6 +195,26 @@
                     header.style.transform = 'translateY(0)';
                 }
                 lastScrollTop = scrollTop;
+            });
+
+            // Scroll to Top Button Functionality
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+
+            // Show/hide scroll to top button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+
+            // Smooth scroll to top when button is clicked
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>

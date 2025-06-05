@@ -343,6 +343,46 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4a7c59, #2d5016);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(45,80,22,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(45,80,22,0.4);
+            background: linear-gradient(135deg, #2d5016, #1a3009);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-2px);
+        }
+
         /* Footer */
         .footer {
             background: linear-gradient(135deg, #2c5530, #3a7040);
@@ -413,6 +453,14 @@
             .nav-links {
                 gap: 1rem;
             }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -445,6 +493,14 @@
                 height: 250px;
                 font-size: 1rem;
             }
+
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
 
         /* Loading Animation */
@@ -467,6 +523,10 @@
 <body>
 <?php include 'header.php'; ?>
 
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <i class='bx bx-up-arrow-alt'></i>
+</button>
 
 <div class="main">
     <!-- Banner Section -->
@@ -589,6 +649,26 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
+    // Scroll to Top Button Functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+    
+    // Smooth scroll to top when button is clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
     // Form validation and enhancement
     document.querySelector('.contact-form form').addEventListener('submit', function(e) {
         const name = document.getElementById('name').value.trim();

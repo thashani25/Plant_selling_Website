@@ -72,11 +72,43 @@
             text-align: center;
         }
 
-
         .main {
             margin-left: 280px;
             padding: 2rem;
             flex: 1;
+        }
+
+        /* Back button at the top */
+        .back-nav {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-back-nav {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-back-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-back-nav i {
+            font-size: 1.2rem;
         }
 
         h1 {
@@ -237,7 +269,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             text-align: center;
             box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
         }
@@ -245,6 +279,27 @@
         .btn-back:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-view:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
         .button-group {
@@ -280,7 +335,7 @@
                 flex-direction: column;
             }
 
-            .btn, .btn-back {
+            .btn, .btn-back, .btn-view {
                 margin-right: 0;
                 margin-bottom: 1rem;
             }
@@ -319,6 +374,14 @@
     </div>
 
     <div class="main">
+        <!-- Back navigation button at the top -->
+        <div class="back-nav">
+            <button class="btn-back-nav" onclick="goBack()">
+                <i class='bx bx-arrow-back'></i>
+                Back
+            </button>
+        </div>
+
         <h1>Add New Product</h1>
 
         <div class="form-box">
@@ -360,13 +423,53 @@
 
                 <div class="button-group">
                     <button type="submit" class="btn">Add Product</button>
-                    <a href="#products" class="btn-back">Cancel</a>
+                    <a href="../view_product.php" class="btn-view">View Products</a>
+                    <button type="button" class="btn-back" onclick="goBack()">
+                        <i class='bx bx-arrow-back'></i>
+                        Back
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
+        // Back button functionality
+        function goBack() {
+            // Check if there's a previous page in history
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // If no history, go to a default page (products page)
+                window.location.href = '#products';
+                // Or you could use a specific URL like:
+                // window.location.href = 'products.php';
+            }
+        }
+
+        // Alternative back function with confirmation if form has data
+        function goBackWithConfirmation() {
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
+            let hasData = false;
+            
+            // Check if form has any data
+            for (let [key, value] of formData.entries()) {
+                if (value && value.toString().trim() !== '') {
+                    hasData = true;
+                    break;
+                }
+            }
+            
+            if (hasData) {
+                if (confirm('You have unsaved changes. Are you sure you want to go back?')) {
+                    goBack();
+                }
+            } else {
+                goBack();
+            }
+        }
+
         // File input handling
         const fileInput = document.getElementById('productImage');
         const fileDisplay = document.getElementById('fileDisplay');
@@ -452,6 +555,25 @@
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('open');
         }
+
+        // Prevent accidental page leave with unsaved changes
+        window.addEventListener('beforeunload', function(e) {
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
+            let hasData = false;
+            
+            for (let [key, value] of formData.entries()) {
+                if (value && value.toString().trim() !== '') {
+                    hasData = true;
+                    break;
+                }
+            }
+            
+            if (hasData) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
     </script>
 </body>
 </html>

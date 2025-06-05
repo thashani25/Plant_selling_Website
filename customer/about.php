@@ -345,11 +345,45 @@
             right: -25px;
         }
 
-        /* Loading Animation */
-        .services-grid {
-            animation: fadeInUp 0.6s ease;
+        /* Scroll to Top Button Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4a7c59, #2d5016);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
         }
 
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, #2d5016, #1a3009);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(45, 80, 22, 0.5);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Animation for smooth appearance */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -359,6 +393,15 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .scroll-to-top.show {
+            animation: fadeInUp 0.3s ease;
+        }
+
+        /* Loading Animation */
+        .services-grid {
+            animation: fadeInUp 0.6s ease;
         }
 
         /* Individual service animation delay */
@@ -408,6 +451,14 @@
             .nav-arrow {
                 display: none;
             }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -436,6 +487,14 @@
 
             .testimonial-item {
                 padding: 30px 20px;
+            }
+
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
             }
         }
     </style>
@@ -566,6 +625,11 @@
     </div>
 </div>
 
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" id="scrollToTop" title="Back to Top">
+    <i class="bx bx-up-arrow-alt"></i>
+</button>
+
 <?php include 'footer.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -609,6 +673,26 @@
         } else if (endX - startX > 50) {
             prevSlide();
         }
+    });
+
+    // Scroll to Top Button Functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    // Show/hide scroll to top button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    // Smooth scroll to top when button is clicked
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 </script>
 

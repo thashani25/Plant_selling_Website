@@ -248,6 +248,70 @@
             left: 100%;
         }
 
+        /* Scroll to Top Button Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #4a7c59, #2d5016);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 6px 20px rgba(45,80,22,0.3);
+            transition: all 0.4s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, #2d5016, #1a3009);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(45,80,22,0.5);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .scroll-to-top i {
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover i {
+            transform: translateY(-2px);
+        }
+
+        /* Animation for smooth appearance */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .scroll-to-top.show {
+            animation: fadeInUp 0.4s ease;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .banner {
@@ -274,6 +338,14 @@
                 border-radius: 0;
                 border-left: none;
                 border-top: 4px solid #4a7c59;
+            }
+
+            .scroll-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 20px;
             }
         }
 
@@ -308,22 +380,19 @@
                 height: 45px;
                 font-size: 1.1rem;
             }
+
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 18px;
+            }
         }
 
         /* Loading Animation */
         .gallery {
             animation: fadeInUp 0.6s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Individual product animation delay */
@@ -387,10 +456,39 @@
     </div>
 </div>
 
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" id="scrollToTop" title="Back to Top">
+    <i class="bx bx-up-arrow-alt"></i>
+</button>
+
 <?php include 'footer.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="script.js"></script>
+
+<script>
+    // Scroll to Top Button Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        // Show/hide scroll to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top when button is clicked
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 
 <?php include 'alert.php'; ?>
 

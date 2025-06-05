@@ -122,6 +122,13 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
             color: #4ade80;
         }
 
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         .add-btn {
             background: linear-gradient(135deg, #2d5a27, #4ade80);
             color: white;
@@ -142,6 +149,29 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
         }
 
         .add-btn i {
+            font-size: 1.2rem;
+        }
+
+        .back-to-shop-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-to-shop-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-to-shop-btn i {
             font-size: 1.2rem;
         }
 
@@ -363,6 +393,11 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
                 font-size: 1.8rem;
             }
 
+            .header-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+
             .products-table {
                 font-size: 0.9rem;
             }
@@ -395,6 +430,17 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 
             .page-header {
                 padding: 20px;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .add-btn, .back-to-shop-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
             }
 
             .products-table {
@@ -471,10 +517,16 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
                 <i class='bx bx-cube'></i>
                 Manage Products
             </h1>
-            <a href="add_product.php" class="add-btn">
-                <i class='bx bx-plus'></i>
-                Add New Product
-            </a>
+            <div class="header-buttons">
+                <a href="../view_product.php" class="back-to-shop-btn">
+                    <i class='bx bx-store'></i>
+                    Back to Shop
+                </a>
+                <a href="add_product.php" class="add-btn">
+                    <i class='bx bx-plus'></i>
+                    Add New Product
+                </a>
+            </div>
         </div>
 
         <!-- Products Container -->

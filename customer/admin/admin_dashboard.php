@@ -445,7 +445,7 @@ $total_users = $user_data['total'];
         <div class="header">
             <h1>Admin Dashboard</h1>
             <div class="header-actions">
-                <a href="" class="home-btn">
+                <a href="../home.php" class="home-btn">
                     <i class='bx bx-home-alt'></i>
                     Back to Home
                 </a>
